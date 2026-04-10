@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NGO Registration</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <div class="card large">
+
+      <h1>NGO Portal</h1>
+      <p class="subtitle">Register Your NGO for Verification</p>
+
+      <form>
+        <h2>NGO Registration</h2>
+
+        <!-- Organization Details -->
+        <label>NGO Name</label>
+        <input type="text" placeholder="Enter NGO name" required>
+
+        <label>Year of Establishment</label>
+        <input type="number" placeholder="e.g. 2010" required>
+
+        <label>Registration Number / Trust Deed Number</label>
+        <input type="text" placeholder="Enter registration number" required>
+
+        <label>Upload NGO Certificate</label>
+        <input type="file" required>
+
+        <!-- POC Details -->
+        <h3 class="section-title">Point of Contact (POC)</h3>
+
+        <label>POC Name</label>
+        <input type="text" placeholder="Enter POC name" required>
+
+        <label>Designation</label>
+        <input type="text" placeholder="Enter designation" required>
+
+        <label>Phone Number</label>
+        <input type="tel" placeholder="+91 XXXXX XXXXX" required>
+
+        <label>Official Email</label>
+        <input type="email" placeholder="official@ngo.org" required>
+
+        <!-- Operational Details -->
+        <label>Operational Area</label>
+        <input type="text" placeholder="State / District / City" required>
+
+        <label>Focus Areas</label>
+        <div class="skills">
+          <label><input type="checkbox"> Education</label>
+          <label><input type="checkbox"> Healthcare</label>
+          <label><input type="checkbox"> Hunger Relief</label>
+          <label><input type="checkbox"> Disaster Relief</label>
+          <label><input type="checkbox"> Women Empowerment</label>
+          <label><input type="checkbox"> Child Welfare</label>
+          <label><input type="checkbox"> Environment</label>
+          <label><input type="checkbox"> Rural Development</label>
+        </div>
+
+        <!-- Security -->
+        <h3 class="section-title">Security Setup</h3>
+
+        <label>Create Password</label>
+        <input type="password" placeholder="Create password" required>
+
+        <label>Confirm Password</label>
+        <input type="password" placeholder="Confirm password" required>
+
+        <div class="checkbox">
+          <input type="checkbox" required>
+          <span>I agree to enable 2FA and follow platform security rules.</span>
+        </div>
+
+        <button type="submit" class="btn primary full">Submit for Verification</button>
+
+        <p class="small-text">
+          Already registered? <a href="ngo-login.html">Login Here</a>
+        </p>
+
+      </form>
+
+    </div>
+  </div>
+
+</body>
+</html>
