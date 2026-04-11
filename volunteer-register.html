@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volunteer Registration</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <div class="card large">
+      <h2>Volunteer Registration</h2>
+      <p class="subtitle">Create your volunteer profile</p>
+
+      <form>
+        <label>Full Name</label>
+        <input type="text" placeholder="Enter full name" required>
+
+        <label>Email</label>
+        <input type="email" placeholder="Enter email" required>
+
+        <label>Phone Number</label>
+        <input type="tel" placeholder="+91 XXXXX XXXXX" required>
+
+        <label>Password</label>
+        <input type="password" placeholder="Create password" required>
+
+        <label>Base Location</label>
+        <input type="text" placeholder="City / Pincode" required>
+
+        <label>Travel Radius</label>
+        <select required>
+          <option value="">Select Radius</option>
+          <option>5 km</option>
+          <option>10 km</option>
+          <option>20 km</option>
+          <option>Remote Only</option>
+        </select>
+
+        <label>Skills (Select Multiple)</label>
+        <div class="skills">
+          <label><input type="checkbox"> Medical Support</label>
+          <label><input type="checkbox"> Teaching</label>
+          <label><input type="checkbox"> Food Distribution</label>
+          <label><input type="checkbox"> Logistics</label>
+          <label><input type="checkbox"> Counseling</label>
+          <label><input type="checkbox"> Translation</label>
+          <label><input type="checkbox"> IT Support</label>
+          <label><input type="checkbox"> Heavy Lifting</label>
+          <label><input type="checkbox"> Driving Support</label>
+        </div>
+
+        <label>Availability</label>
+        <select required>
+          <option value="">Select Availability</option>
+          <option>Weekends</option>
+          <option>Weekdays</option>
+          <option>Evenings</option>
+          <option>Emergency On-call</option>
+        </select>
+
+        <label>Upload Government ID</label>
+        <input type="file" required>
+
+        <button type="submit" class="btn success full">Register as Volunteer</button>
+
+        <p class="small-text">
+          Already have an account? <a href="volunteer-login.html">Login Here</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>
