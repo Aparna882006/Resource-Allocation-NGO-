@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Resource Allocation - Connecting Urgent Needs with Immediate Help</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <!-- Header - Fully Aligned -->
+    <!-- Header -->
+<header class="main-header">
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="../logoNGO.jpeg" alt="Smart Resource Logo" class="logo-img">
+        </div>
+
+        <!-- Navigation -->
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li class="dropdown">
+                    <a href="#work">Our Work <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="#">Education</a>
+                        <a href="#">Healthcare</a>
+                        <a href="#">Disaster Response</a>
+                        <a href="#">Livelihood</a>
+                    </div>
+                </li>
+                <li><a href="#campaigns">Campaigns</a></li>
+                <li><a href="#get-involved">Get Involved</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Right Side -->
+        <div class="header-actions">
+            <button class="btn-emergency" onclick="openEmergencyModal()">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>Emergency</span>
+            </button>
+            <a href="../login.html" class="btn-login">Login</a>
+            <a href="../Register/mainreg.html" class="btn-support">Join Now</a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+        <div class="logo">
+            <img src="../logoNGO.jpeg" alt="Smart Resource Logo" class="logo-img">
+        </div>
+        <button class="close-btn" onclick="toggleMobileMenu()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    <nav class="mobile-nav">
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#work">Our Work</a>
+        <a href="#campaigns">Campaigns</a>
+        <a href="#get-involved">Get Involved</a>
+        <a href="#contact">Contact</a>
+        <a href="../login.html">Login</a>
+        <a href="../Register/mainreg.html">Join Now</a>
+        <button class="btn-emergency-mobile" onclick="openEmergencyModal()">
+            <i class="fas fa-exclamation-triangle"></i> Report Emergency
+        </button>
+    </nav>
+</div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <img src="logoNGO.png" alt="Smart Resource Logo" class="logo-img">
+            </div>
+            <button class="close-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="mobile-nav">
+            <a href="#home">Home</a>
+            <a href="#about">About Us</a>
+            <a href="#work">Our Work</a>
+            <a href="#campaigns">Campaigns</a>
+            <a href="#get-involved">Get Involved</a>
+            <a href="#contact">Contact</a>
+            <a href="login.html">Login</a>
+            <a href="Register/mainreg.html" class="btn-support">Join Now</a>
+            <button class="btn-emergency-mobile" onclick="openEmergencyModal()">
+                <i class="fas fa-exclamation-triangle"></i> Report Emergency
+            </button>
+        </nav>
+    </div>
+
+    <!-- Hero Section - FIXED (Duplication Removed) -->
+    <section class="hero" id="home">
+        <div class="hero-slider" id="heroSlider">
+            <div class="hero-slide active">
+                <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1600&h=900&fit=crop" alt="Volunteers helping">
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="hero-slide">
+                <img src="https://t4.ftcdn.net/jpg/05/85/98/03/360_F_585980340_geg6GaDREebGe3cGAjtuElD6gS7HBvGr.jpg" alt="Aid distribution">
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="hero-slide">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsvlXgy--nEvfPD5tyPB_lNYiL0GuyhyBnEA&sp" alt="Emergency response">
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="hero-slide">
+                <img src="https://www.zauca.com/wp-content/uploads/NGO-Website-Design-Non-Profit-Organization-Website-Design-@-Rs.-3800.jpg" alt="Community support">
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="hero-slide">
+                <img src="https://content.jdmagicbox.com/quickquotes/listicle/listicle_1725355610735_88irf_4659x2200.jpg?impolicy=queryparam&im=Resize=(847,400),aspect=fit&q=75" alt="Social Impact">
+                <div class="hero-overlay"></div>
+            </div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="container">
+                <h2 class="hero-subtitle">24/7 Emergency Response Network</h2>
+                <h1 class="hero-title">
+                    Connecting <span class="highlight">Urgent Needs</span> with Immediate Help
+                </h1>
+                <p class="hero-description">
+                    A real-time platform bridging the gap between citizens, NGOs, and volunteers to deliver fast emergency support and sustainable community development.
+                </p>
+                <div class="hero-actions">
+                    <button class="btn-primary-red" onclick="openEmergencyModal()">
+                        <i class="fas fa-exclamation-triangle"></i> Report Emergency
+                    </button>
+                    <a href="#get-involved" class="btn-secondary">
+                        <i class="fas fa-hand-holding-heart"></i> Become a Volunteer
+                    </a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="15420">0</span>
+                        <span class="stat-label">Emergencies Handled</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="542">0</span>
+                        <span class="stat-label">NGOs Connected</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="12850">0</span>
+                        <span class="stat-label">Active Volunteers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slider-dots" id="sliderDots"></div>
+        
+        <button class="slider-arrow slider-prev" onclick="prevSlide()">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="slider-arrow slider-next" onclick="nextSlide()">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </section>
+
+    <!-- Our Programmes / How It Works -->
+    <section class="programmes" id="work">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Programmes</h2>
+                <p class="section-subtitle">Four pillars of effective resource allocation and emergency response</p>
+            </div>
+            
+            <div class="programmes-grid">
+                <div class="programme-card">
+                    <div class="programme-icon blue">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <div class="programme-content">
+                        <h3>Emergency Reporting</h3>
+                        <p>Citizens report urgent needs instantly through our digital platform with real-time location tracking and multimedia support.</p>
+                        <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="programme-card">
+                    <div class="programme-icon green">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <div class="programme-content">
+                        <h3>NGO Verification</h3>
+                        <p>Trusted partner organizations verify requests and assess resource requirements for efficient allocation.</p>
+                        <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="programme-card">
+                    <div class="programme-icon orange">
+                        <i class="fas fa-users-viewfinder"></i>
+                    </div>
+                    <div class="programme-content">
+                        <h3>Volunteer Matching</h3>
+                        <p>AI-powered system matches nearby volunteers with required skills to verified emergency requests.</p>
+                        <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="programme-card">
+                    <div class="programme-icon purple">
+                        <i class="fas fa-truck-medical"></i>
+                    </div>
+                    <div class="programme-content">
+                        <h3>Rapid Deployment</h3>
+                        <p>Coordinated delivery of aid and assistance with real-time tracking until crisis resolution.</p>
+                        <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Areas (SDGs Style) -->
+    <section class="impact-goals">
+        <div class="container">
+            <div class="section-header light">
+                <h2 class="section-title">Towards Achieving<br>Sustainable Development Goals</h2>
+            </div>
+            
+            <div class="goals-container">
+                <div class="goal-item" data-color="#e91e63">
+                    <div class="goal-icon">
+                        <i class="fas fa-heart-pulse"></i>
+                    </div>
+                    <h4>Good Health &<br>Well Being</h4>
+                    <span class="goal-number">#3</span>
+                </div>
+                
+                <div class="goal-item" data-color="#ff5722">
+                    <div class="goal-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h4>Quality<br>Education</h4>
+                    <span class="goal-number">#4</span>
+                </div>
+                
+                <div class="goal-item" data-color="#ff9800">
+                    <div class="goal-icon">
+                        <i class="fas fa-venus-mars"></i>
+                    </div>
+                    <h4>Gender<br>Equality</h4>
+                    <span class="goal-number">#5</span>
+                </div>
+                
+                <div class="goal-item" data-color="#8bc34a">
+                    <div class="goal-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h4>Decent Work &<br>Economic Growth</h4>
+                    <span class="goal-number">#8</span>
+                </div>
+                
+                <div class="goal-item" data-color="#3f51b5">
+                    <div class="goal-icon">
+                        <i class="fas fa-scale-balanced"></i>
+                    </div>
+                    <h4>Reduced<br>Inequalities</h4>
+                    <span class="goal-number">#10</span>
+                </div>
+                
+                <div class="goal-item" data-color="#4caf50">
+                    <div class="goal-icon">
+                        <i class="fas fa-hands-holding-circle"></i>
+                    </div>
+                    <h4>Partnerships for<br>the Goals</h4>
+                    <span class="goal-number">#17</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stories in Motion -->
+    <section class="stories">
+        <div class="container">
+            <h2 class="section-title">Stories in Motion</h2>
+            <div class="stories-carousel">
+                <button class="story-nav prev" onclick="scrollStories('left')">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="stories-track" id="storiesTrack">
+                    <div class="story-card">
+                <div class="story-image">
+                      <a href="https://www.youtube.com/watch?v=jqyXc15ljHY" target="_blank">
+                           <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=400&h=300&fit=crop" alt="Story">
+                         <div class="play-btn"><i class="fas fa-play"></i></div>
+                      </a>
+                </div>
+                <div class="story-content">
+                <h4>Rapid Flood Response</h4>
+                <p>Kerala, 2023</p>
+                </div>
+                </div>
+                    
+                    <div class="story-card">
+                        <div class="story-image">
+                          <a href="https://www.youtube.com/watch?v=M73aYaibKWs" target="_blank">    
+                            <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=400&h=300&fit=crop" alt="Story">
+                            <div class="play-btn"><i class="fas fa-play"></i></div>
+                          </a>
+                        </div>
+                        <div class="story-content">
+                            <h4>Medical Camp Success</h4>
+                            <p>Rural Rajasthan</p>
+                        </div>
+                    </div>
+                    
+                    <div class="story-card">
+                        <div class="story-image">
+                          <a href="https://www.youtube.com/shorts/vkTMRU5Jchc" target="_blank">  
+    
+                            <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&h=300&fit=crop" alt="Story">
+                            <div class="play-btn"><i class="fas fa-play"></i></div>
+                          </a>
+                        </div>
+                        <div class="story-content">
+                            <h4>Volunteer Network</h4>
+                            <p>Pan India</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="story-nav next" onclick="scrollStories('right')">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support a Cause / User Roles -->
+    <section class="support-cause" id="get-involved">
+        <div class="container">
+            <h2 class="section-title">Support a Cause</h2>
+            <p class="section-subtitle">Choose how you want to contribute to emergency response and community welfare</p>
+            
+            <div class="causes-grid">
+                <div class="cause-card">
+                    <div class="cause-image">
+                        <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&h=400&fit=crop" alt="NGO">
+                        <div class="cause-overlay"></div>
+                        <div class="cause-tag">For Organizations</div>
+                    </div>
+                    <div class="cause-content">
+                        <h3>Register as NGO</h3>
+                        <p>Join our network of verified organizations to coordinate relief efforts, manage resources, and verify emergency requests in your operational area.</p>
+                        <a href="Register/ngoreg.html" class="btn-cause">Register Now <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="cause-card featured">
+                    <div class="cause-image">
+                        <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=600&h=400&fit=crop" alt="Volunteer">
+                        <div class="cause-overlay"></div>
+                        <div class="cause-badge">Most Popular</div>
+                        <div class="cause-tag">For Individuals</div>
+                    </div>
+                    <div class="cause-content">
+                        <h3>Become a Volunteer</h3>
+                        <p>Offer your skills and time to help communities in crisis. Receive alerts for nearby emergencies and track your social impact.</p>
+                        <a href="Register/volunteereg.html" class="btn-cause">Join as Volunteer <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="cause-card">
+                    <div class="cause-image">
+                        <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=600&h=400&fit=crop" alt="Citizen">
+                        <div class="cause-overlay"></div>
+                        <div class="cause-tag">For Community</div>
+                    </div>
+                    <div class="cause-content">
+                        <h3>Register as Citizen</h3>
+                        <p>Report emergencies quickly and accurately. Track your request status in real-time and get connected with immediate help.</p>
+                        <a href="Register/citizenreg.html" class="btn-cause">Sign Up <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="cause-card">
+                    <div class="cause-image">
+                        <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=600&h=400&fit=crop" alt="Donate">
+                        <div class="cause-overlay"></div>
+                        <div class="cause-tag">Financial Support</div>
+                    </div>
+                    <div class="cause-content">
+                        <h3>Donate Resources</h3>
+                        <p>Support our emergency fund to help us maintain the platform and provide immediate financial aid during critical disasters.</p>
+                        <a href="#" class="btn-cause">Donate Now <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer" id="contact">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-column">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="#">About Smart Resource</a></li>
+                        <li><a href="#">Our Impact</a></li>
+                        <li><a href="#">Reach & Presence</a></li>
+                        <li><a href="#">Milestones</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Programmes</h4>
+                    <ul>
+                        <li><a href="#">Education</a></li>
+                        <li><a href="#">Health</a></li>
+                        <li><a href="#">Livelihood</a></li>
+                        <li><a href="#">Women Empowerment</a></li>
+                        <li><a href="#">Disaster Response</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Campaigns</h4>
+                    <ul>
+                        <li><a href="#">Shiksha Na Ruke</a></li>
+                        <li><a href="#">Health Cannot Wait</a></li>
+                        <li><a href="#">She Can Fly</a></li>
+                        <li><a href="#">Swabhiman</a></li>
+                        <li><a href="#">Tayyari Kal Ki</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Get Involved</h4>
+                    <ul>
+                        <li><a href="mainreg.html">Individual Support</a></li>
+                        <li><a href="#">Corporate Partnerships</a></li>
+                        <li><a href="Register/volunteereg.html">Volunteer</a></li>
+                        <li><a href="#">School Partnerships</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Annual Report</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                        <li><a href="#">Stories of Change</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Films</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="../logoNGO.jpeg" alt="Smart Resource Logo" class="logo-img">
+                    </div>
+                    
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h4>Subscribe to Our Newsletter</h4>
+                    <form class="newsletter-form">
+                        <input type="text" placeholder="Name" class="form-input">
+                        <input type="email" placeholder="Enter Your Email" class="form-input">
+                        <button type="submit" class="btn-subscribe">SUBSCRIBE</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-copyright">
+                <p>&copy; 2026 Smart Resource Allocation for NGO. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Emergency Modal -->
+    <div class="emergency-modal" id="emergencyModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeEmergencyModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="modal-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            
+            <h2>Report Emergency</h2>
+            <p>This will immediately alert nearby NGOs and available volunteers.</p>
+            
+            <form id="emergencyForm" onsubmit="submitEmergency(event)">
+                <div class="form-group">
+                    <label>Emergency Type</label>
+                    <select class="form-control" required>
+                        <option value="">Select type...</option>
+                        <option>Medical Emergency</option>
+                        <option>Natural Disaster (Flood/Earthquake)</option>
+                        <option>Fire</option>
+                        <option>Accident</option>
+                        <option>Food/Water Shortage</option>
+                        <option>Safety/Security</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Your Location</label>
+                    <div class="location-input">
+                        <input type="text" class="form-control" placeholder="Enter address or use GPS" required>
+                        <button type="button" class="gps-btn" onclick="getLocation()">
+                            <i class="fas fa-location-arrow"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-control" rows="3" placeholder="Briefly describe the situation and number of people affected..." required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Contact Number</label>
+                    <input type="tel" class="form-control" placeholder="+91 XXXXX XXXXX" required>
+                </div>
+                
+                <button type="submit" class="btn-submit-emergency">
+                    <i class="fas fa-paper-plane"></i> Send Emergency Alert
+                </button>
+                
+                <p class="form-note">
+                    <i class="fas fa-shield-alt"></i> Your location is shared only with verified responders
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
