@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Volunteer Dashboard - NGOHubX</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+  <!-- Chart.js for analytics -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* Volunteer Specific Additional Styles */
+    .hero-greeting {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, #1e3a8a 100%);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      color: white;
+      margin-bottom: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow-md);
+    }
+    
+    .hero-greeting h2 { font-size: 24px; font-family: 'Poppins', sans-serif; margin-bottom: 10px; }
+    .hero-greeting p { font-size: 14px; opacity: 0.9; }
+    
+    .badge-icon-lg {
+      font-size: 40px;
+      color: #fbbf24;
+      background: rgba(255,255,255,0.2);
+      padding: 15px;
+      border-radius: 50%;
+    }
+
+    .volunteer-achievement {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px;
+      background: #fafafa;
+      border-radius: var(--radius-md);
+      margin-bottom: 15px;
+      border: 1px solid var(--border-color);
+    }
+
+    .achievement-icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: white;
+    }
+
+    .card-dark-blue { border-left-color: var(--info-blue) !important; }
+    .btn-outline { background: transparent; border: 1px solid var(--border-color); color: var(--text-dark); }
+    .btn-outline:hover { background: var(--bg-main); }
+  </style>
+</head>
+
+<body>
+  <!-- Sidebar for Volunteer -->
+  <aside class="sidebar">
+    <div class="sidebar-header" onclick="window.location.href='Index.html'" style="cursor: pointer;">
+      <img src="logoNGO.jpeg" style="height: 35px; width: auto; border-radius: 6px; object-fit: contain;" alt="Logo">
+      <span>NGOHubX</span>
+    </div>
+    
+    <div class="sidebar-menu">
+      <a href="volunteer-dashboard.html" class="menu-item active">
+        <i class="fas fa-th-large"></i> Dashboard
+      </a>
+      <a href="volunteer-tasks.html" class="menu-item">
+        <i class="fas fa-search-location"></i> Find Tasks
+      </a>
+      <a href="volunteer-tasks.html" class="menu-item">
+        <i class="fas fa-clipboard-list"></i> My Tasks
+      </a>
+      <a href="volunteer-leaderboard.html" class="menu-item">
+        <i class="fas fa-trophy"></i> Leaderboard
+      </a>
+      <a href="volunteer-profile.html" class="menu-item">
+        <i class="fas fa-user-circle"></i> My Profile
+      </a>
+    </div>
+
+    <div class="sidebar-footer">
+      <button class="logout-btn" onclick="logout()">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="welcome-text">
+        <h1 id="welcomeGreeting">Volunteer Hub</h1>
+        <span id="dateDisplay">Monday, October 24, 2026</span>
+      </div>
+
+      <div class="topbar-actions">
+        <!-- Status Toggle -->
+        <div style="display: flex; align-items: center; gap: 8px; margin-right: 15px; font-size: 13px; font-weight: 600;">
+          <span style="color: var(--text-muted);">Status:</span>
+          <span class="status-badge status-available"><i class="fas fa-circle" style="font-size:10px;"></i> Available</span>
+        </div>
+        
+        <button class="notification-btn" onclick="window.location.href='volunteer-notifications.html'">
+          <i class="far fa-bell"></i>
+          <span class="badge" style="background-color: var(--warning-orange);">2</span>
+        </button>
+
+        <div class="user-profile">
+          <div class="user-info" style="text-align: right;">
+            <span class="user-name" id="volNameDisplay">Loading...</span>
+            <span class="user-role">Verified Volunteer</span>
+          </div>
+          <img src="https://ui-avatars.com/api/?name=Volunteer&background=EFF6FF&color=1D4ED8" id="profileImage" alt="Profile">
+        </div>
+      </div>
+    </header>
+
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+      
+      <!-- Greeting Banner -->
+      <div class="hero-greeting">
+        <div>
+          <h2>Ready to make a difference today, <span id="heroName">Volunteer</span>?</h2>
+          <p>You have 1 assigned task scheduled. Your community needs your skills!</p>
+        </div>
+        <div class="badge-icon-lg">
+          <i class="fas fa-medal"></i>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="quick-actions">
+        <button class="btn-action btn-secondary" onclick="window.location.href='volunteer-tasks.html'"><i class="fas fa-search"></i> Find Nearby Tasks</button>
+        <button class="btn-action btn-secondary" onclick="alert('Availability updated!')"><i class="fas fa-calendar-check"></i> Update Availability</button>
+        <button class="btn-action btn-secondary" onclick="alert('Messaging NGO Support...')"><i class="fas fa-headset"></i> Support Center</button>
+        <button class="btn-action btn-secondary" onclick="window.location.href='volunteer-tasks.html'"><i class="fas fa-calendar-alt"></i> My Schedule</button>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-content">
+            <h3>Completed Tasks</h3>
+            <div class="value">42</div>
+          </div>
+          <div class="stat-icon icon-green"><i class="fas fa-check-double"></i></div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-content">
+            <h3>Assigned Today</h3>
+            <div class="value">1</div>
+          </div>
+          <div class="stat-icon icon-orange"><i class="fas fa-clipboard"></i></div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-content">
+            <h3>Trust Rating</h3>
+            <div class="value">4.9 <span style="font-size:16px; color:#fbbf24;"><i class="fas fa-star"></i></span></div>
+          </div>
+          <div class="stat-icon" style="background:#fffbeb; color:#fbbf24;"><i class="fas fa-star-half-alt"></i></div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-content">
+            <h3>Impact Score</h3>
+            <div class="value">1,250</div>
+          </div>
+          <div class="stat-icon icon-blue"><i class="fas fa-bolt"></i></div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-content">
+            <h3>Total Hours</h3>
+            <div class="value">185</div>
+          </div>
+          <div class="stat-icon icon-purple"><i class="fas fa-clock"></i></div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-content">
+            <h3>Rank Tier</h3>
+            <div class="value" style="color: var(--primary-green);">Gold</div>
+          </div>
+          <div class="stat-icon icon-teal"><i class="fas fa-shield-alt"></i></div>
+        </div>
+      </div>
+
+      <!-- Main Panels Layout -->
+      <div class="dashboard-grid">
+        
+        <!-- Left Column: Tasks -->
+        <div class="panel">
+          <div class="panel-header">
+            <h2 class="panel-title"><i class="fas fa-sun" style="color:#fbbf24;"></i> Today's Assigned Tasks</h2>
+          </div>
+          
+          <div class="urgent-list">
+            <!-- Active Task -->
+            <div class="urgent-card card-dark-blue">
+              <div class="urgent-header">
+                <span class="urgent-type" style="color: var(--info-blue);"><i class="fas fa-box-open"></i> Food Distribution</span>
+                <span class="urgent-time" style="color: var(--emergency-red); font-weight: 600;">Starts in 2 hours</span>
+              </div>
+              <h4 style="font-size: 16px; margin-bottom: 5px;">South District Community Center</h4>
+              <p class="urgent-desc">Assist Hope Foundation in distributing 200 food packets to families affected by recent floods. Lifting 5-10kg boxes required.</p>
+              
+              <div style="display: flex; gap: 15px; margin-bottom: 15px; font-size: 12px; color: var(--text-muted);">
+                <span><i class="far fa-clock"></i> 2:00 PM - 5:00 PM</span>
+                <span><i class="far fa-building"></i> Hope NGO</span>
+                <span><i class="fas fa-fire" style="color: var(--warning-orange);"></i> High Priority</span>
+              </div>
+
+              <div class="urgent-footer" style="padding-top: 15px; border-top: 1px dashed var(--border-color);">
+                <span class="urgent-loc"><i class="fas fa-map-marker-alt"></i> South Ward (2.5km)</span>
+                <div style="display: flex; gap: 10px;">
+                  <button class="btn-action btn-outline" style="padding: 6px 12px; font-size: 12px;" onclick="alert('Viewing Map Details')">Details</button>
+                  <button class="btn-action btn-primary" style="padding: 6px 12px; font-size: 12px; background: var(--info-blue);" onclick="alert('Status updated to: EN ROUTE')">Start Task</button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Pending Verification Task -->
+            <div class="urgent-card" style="opacity: 0.7; border-left-color: var(--text-muted);">
+              <div class="urgent-header">
+                <span class="urgent-type" style="color: var(--text-muted);"><i class="fas fa-chalkboard-teacher"></i> Mentorship Camp</span>
+                <span class="status-badge" style="background:#f3f4f6; color:var(--text-muted);">Pending Review</span>
+              </div>
+              <h4 style="font-size: 15px; margin-bottom: 5px; color: var(--text-muted);">Saturday Tutoring</h4>
+              <p class="urgent-desc">Waiting for NGO coordinator to verify your check-out from yesterday's session.</p>
+            </div>
+          </div>
+
+          <div class="panel-header" style="margin-top: 30px; margin-bottom: 15px;">
+            <h2 class="panel-title"><i class="fas fa-map-marked-alt" style="color:var(--primary-green);"></i> Nearby Urgent Tasks (Open)</h2>
+            <a href="#" class="view-all" onclick="alert('Opening map view')">View Map</a>
+          </div>
+
+          <!-- Opportunities -->
+          <div class="urgent-list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            
+            <div class="request-card" style="margin-bottom: 0;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                <span class="skill-tag" style="background:var(--emergency-light); color:var(--emergency-red); border:none;">Medical Transport</span>
+                <span style="font-size: 11px; font-weight:600;"><i class="fas fa-location-arrow"></i> 1.2 km</span>
+              </div>
+              <h4 class="task-title" style="font-size:14px;">Clinic Medicine Run</h4>
+              <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">Deliver emergency supplies to North hospital.</p>
+              <button class="btn-action btn-primary" style="width:100%; justify-content:center; padding:5px; font-size:12px;" onclick="alert('Task Accepted!')">Accept Task</button>
+            </div>
+
+            <div class="request-card" style="margin-bottom: 0;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                <span class="skill-tag" style="background:#fffbeb; color:var(--warning-orange); border:none;">Survey Works</span>
+                <span style="font-size: 11px; font-weight:600;"><i class="fas fa-location-arrow"></i> 3.5 km</span>
+              </div>
+              <h4 class="task-title" style="font-size:14px;">Post-Flood Assessment</h4>
+              <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">Data collection for impacted families.</p>
+              <button class="btn-action btn-primary" style="width:100%; justify-content:center; padding:5px; font-size:12px;" onclick="alert('Task Accepted!')">Accept Task</button>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Right Column: Achievements & Stats -->
+        <div>
+          <!-- Activity Panel -->
+          <div class="panel" style="margin-bottom: 25px;">
+            <div class="panel-header" style="margin-bottom: 15px;">
+              <h2 class="panel-title">My Achievements</h2>
+            </div>
+            
+            <div class="volunteer-achievement">
+              <div class="achievement-icon" style="background:#fbbf24;"><i class="fas fa-crown"></i></div>
+              <div>
+                <div style="font-size: 14px; font-weight: 600; color: var(--text-dark);">Top Tier Responder</div>
+                <div style="font-size: 12px; color: var(--text-muted);">Completed 10 tasks this month.</div>
+              </div>
+            </div>
+
+            <div class="volunteer-achievement">
+              <div class="achievement-icon" style="background:var(--info-blue);"><i class="fas fa-tachometer-alt"></i></div>
+              <div>
+                <div style="font-size: 14px; font-weight: 600; color: var(--text-dark);">Fast Action Badge</div>
+                <div style="font-size: 12px; color: var(--text-muted);">Average response time < 5 mins.</div>
+              </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 15px;">
+              <a href="#" class="view-all" onclick="alert('Viewing all achievements...')">View Badge Collection <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <!-- Personal Growth Analytics -->
+          <div class="panel" style="margin-bottom: 25px;">
+             <div class="panel-header">
+               <h2 class="panel-title">Monthly Impact</h2>
+             </div>
+             <div class="chart-wrapper" style="height: 180px;">
+               <canvas id="volImpactChart"></canvas>
+             </div>
+          </div>
+
+          <!-- Recent Logs -->
+          <div class="panel">
+            <h2 class="panel-title" style="font-size: 15px; margin-bottom: 15px;">Recent Activity</h2>
+            <div class="detail-row" style="padding-bottom:10px; margin-bottom:10px; border-bottom:1px solid #f3f4f6;">
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--primary-light); display: flex; align-items:center; justify-content:center; color: var(--primary-green);"><i class="fas fa-check"></i></div>
+              <div>
+                <div style="font-size: 13px; font-weight: 600;">Completed: Orphanage Supply Drive</div>
+                <div style="font-size: 11px; color: var(--text-muted);">Earned 50 points • Yesterday</div>
+              </div>
+            </div>
+
+            <div class="detail-row" style="padding-bottom:10px; margin-bottom:0; border:none;">
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: #eff6ff; display: flex; align-items:center; justify-content:center; color: var(--info-blue);"><i class="fas fa-star"></i></div>
+              <div>
+                <div style="font-size: 13px; font-weight: 600;">Received 5-Star Rating!</div>
+                <div style="font-size: 11px; color: var(--text-muted);">From: Smile Foundation India • 3 days ago</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Firebase Integration -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <script src="firebase.js"></script>
+
+  <script>
+    // Formatting date
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById('dateDisplay').textContent = new Date().toLocaleDateString('en-US', options);
+
+    // Auth Guard
+    auth.onAuthStateChanged(async (user) => {
+      if (!user) {
+        window.location.href = "login.html";
+        return;
+      }
+      
+      try {
+        const docRef = db.collection("users").doc(user.uid);
+        const docSnap = await docRef.get();
+        let volData = null;
+        
+        if (docSnap.exists) {
+            volData = docSnap.data();
+        }
+
+        if (volData) {
+          const nameToDisplay = volData.fullName || user.email.split('@')[0];
+          document.getElementById("volNameDisplay").textContent = nameToDisplay;
+          document.getElementById("heroName").textContent = nameToDisplay;
+          
+          document.getElementById("profileImage").src = `https://ui-avatars.com/api/?name=${encodeURIComponent(nameToDisplay)}&background=EFF6FF&color=1D4ED8&bold=true`;
+        } else {
+             document.getElementById("volNameDisplay").textContent = user.email.split('@')[0];
+             document.getElementById("heroName").textContent = "Changemaker";
+        }
+
+      } catch (error) {
+        console.error("Error fetching volunteer data:", error);
+      }
+    });
+
+    async function logout(){
+      await auth.signOut();
+      localStorage.clear();
+      window.location.href = "login.html";
+    }
+
+    // Chart.js Implementations
+    document.addEventListener("DOMContentLoaded", function() {
+      // Impact Line Chart
+      const ctxImpact = document.getElementById('volImpactChart').getContext('2d');
+      new Chart(ctxImpact, {
+        type: 'line',
+        data: {
+          labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
+          datasets: [{
+            label: 'Hours Contributed',
+            data: [15, 22, 18, 30, 45],
+            borderColor: '#4CAF50',
+            backgroundColor: 'rgba(76, 175, 80, 0.1)',
+            fill: true,
+            tension: 0.4,
+            borderWidth: 2,
+            pointBackgroundColor: '#4CAF50'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { beginAtZero: true, grid: { borderDash: [5, 5] }, ticks: { font: {size: 10} } },
+            x: { grid: { display: false }, ticks: { font: {size: 10} } }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

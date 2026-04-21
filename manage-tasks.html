@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community Requests - NGOHubX</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header" onclick="window.location.href='Index.html'" style="cursor: pointer;">
+      <img src="logoNGO.jpeg" style="height: 35px; width: auto; border-radius: 6px; object-fit: contain;" alt="Logo">
+      <span>NGOHubX</span>
+    </div>
+    
+    <div class="sidebar-menu">
+      <a href="ngo-dashboard.html" class="menu-item">
+        <i class="fas fa-th-large"></i> Dashboard
+      </a>
+      <a href="manage-tasks.html" class="menu-item active">
+        <i class="fas fa-tasks"></i> Tasks & Requests
+      </a>
+      <a href="create-task.html" class="menu-item">
+        <i class="fas fa-plus-circle"></i> Create Task
+      </a>
+      <a href="manage-volunteers.html" class="menu-item">
+        <i class="fas fa-users"></i> Volunteers
+      </a>
+      <a href="#" class="menu-item">
+        <i class="fas fa-box-open"></i> Resources
+      </a>
+      <a href="analytics.html" class="menu-item">
+        <i class="fas fa-chart-line"></i> Analytics
+      </a>
+    </div>
+
+    <div class="sidebar-footer">
+      <button class="logout-btn" onclick="logout()">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="welcome-text">
+        <h1>Community Requests</h1>
+        <span>Monitor incoming needs and respond efficiently.</span>
+      </div>
+
+      <div class="topbar-actions">
+        <!-- Quick Actions in Topbar -->
+        <a href="create-task.html" class="btn-action btn-primary">
+          <i class="fas fa-plus"></i> Create Task
+        </a>
+        
+        <button class="notification-btn">
+          <i class="far fa-bell"></i>
+          <span class="badge" style="background-color: var(--emergency-red);">5</span>
+        </button>
+
+        <div class="user-profile">
+          <div class="user-info" style="text-align: right;">
+            <span class="user-name" id="pocNameDisplay">User</span>
+            <span class="user-role">NGO Admin</span>
+          </div>
+          <img src="https://ui-avatars.com/api/?name=NGO&background=EFF6FF&color=1D4ED8" id="profileImage" alt="Profile">
+        </div>
+      </div>
+    </header>
+
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+      
+      <!-- Summary Cards -->
+      <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+        <div class="stat-card">
+          <div class="stat-content">
+            <h3>Total Requests</h3>
+            <div class="value">1,204</div>
+          </div>
+          <div class="stat-icon icon-blue"><i class="fas fa-inbox"></i></div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-content">
+            <h3>Pending</h3>
+            <div class="value">42</div>
+          </div>
+          <div class="stat-icon icon-orange"><i class="fas fa-hourglass-half"></i></div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-content">
+            <h3>Approved</h3>
+            <div class="value">980</div>
+          </div>
+          <div class="stat-icon icon-green"><i class="fas fa-check"></i></div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-content">
+            <h3>Rejected</h3>
+            <div class="value">182</div>
+          </div>
+          <div class="stat-icon" style="background:var(--bg-main); color:var(--text-muted);"><i class="fas fa-times"></i></div>
+        </div>
+
+        <div class="stat-card" style="border-color: var(--emergency-light);">
+          <div class="stat-content">
+            <h3 style="color: var(--emergency-red);">High Priority</h3>
+            <div class="value" style="color: var(--emergency-red);">12</div>
+          </div>
+          <div class="stat-icon icon-red"><i class="fas fa-exclamation-triangle"></i></div>
+        </div>
+      </div>
+
+      <!-- Urgent Requests Section -->
+      <div class="panel" style="border-color: var(--emergency-red); margin-bottom: 25px; background: #fffafaf0;">
+        <div class="panel-header" style="margin-bottom: 10px;">
+          <h2 class="panel-title" style="color: var(--emergency-red); display: flex; align-items: center; gap: 8px;">
+            <i class="fas fa-siren-on" style="background: var(--emergency-red); color: white; padding: 5px; border-radius: 5px;"></i> Urgent Critical Needs
+          </h2>
+        </div>
+        <div class="urgent-list" style="flex-direction: row; flex-wrap: wrap;">
+          <div class="urgent-card" style="flex: 1; min-width: 300px;">
+            <div class="urgent-header">
+              <span class="urgent-type"><i class="fas fa-hamburger"></i> Mass Food Shortage</span>
+              <span class="urgent-time">10 mins ago</span>
+            </div>
+            <p class="urgent-desc">Slum area flooded, 150+ people without food access.</p>
+            <div class="urgent-footer">
+              <span class="urgent-loc"><i class="fas fa-map-marker-alt"></i> Riverbank Slums</span>
+              <button class="btn-action btn-primary" style="padding: 6px 12px; font-size: 12px; background: var(--emergency-red);" onclick="convertUrgentToTask('Mass Food Shortage', 'Riverbank Slums')">Convert to Task</button>
+            </div>
+          </div>
+
+          <div class="urgent-card" style="flex: 1; min-width: 300px;">
+            <div class="urgent-header">
+              <span class="urgent-type"><i class="fas fa-first-aid"></i> Medical Emergency</span>
+              <span class="urgent-time">45 mins ago</span>
+            </div>
+            <p class="urgent-desc">Outbreak of waterborne diseases in relief camp. Need doctors.</p>
+            <div class="urgent-footer">
+              <span class="urgent-loc"><i class="fas fa-map-marker-alt"></i> Camp B, Sector 4</span>
+              <button class="btn-action btn-primary" style="padding: 6px 12px; font-size: 12px; background: var(--emergency-red);" onclick="convertUrgentToTask('Medical Emergency', 'Camp B, Sector 4')">Convert to Task</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filters & Actions -->
+      <div class="filters-bar">
+        <div class="filter-group" style="flex: 2; min-width: 200px;">
+          <i class="fas fa-search" style="color: var(--text-muted);"></i>
+          <input type="text" class="filter-input" placeholder="Search by ID, User Name, Area..." style="width: 100%; border: none; background: transparent; padding: 0;">
+        </div>
+        
+        <div class="filter-group">
+          <select class="filter-input">
+            <option value="">All Categories</option>
+            <option>Food</option>
+            <option>Medical</option>
+            <option>Education</option>
+            <option>Shelter</option>
+            <option>Emergency</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <select class="filter-input">
+            <option value="">Priority</option>
+            <option>High</option>
+            <option>Medium</option>
+            <option>Low</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <select class="filter-input">
+            <option value="">Status</option>
+            <option>Pending</option>
+            <option>Approved</option>
+            <option>Rejected</option>
+          </select>
+        </div>
+        
+        <button class="btn-action btn-secondary" style="padding: 8px 15px;" onclick="alert('Filters applied to Requests table.')"><i class="fas fa-filter"></i> Apply</button>
+      </div>
+
+      <!-- Main Layout -->
+      <div class="create-task-grid">
+        
+        <!-- Requests Table -->
+        <div class="form-panel" style="padding: 0;">
+          <div style="overflow-x: auto;">
+            <table class="tasks-table">
+              <thead style="background: var(--bg-main);">
+                <tr>
+                  <th>Request Details</th>
+                  <th>Category</th>
+                  <th>Location</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="requestsTableBody">
+                <!-- Row 1 -->
+                <tr class="request-row" onclick="selectRequest(1)">
+                  <td>
+                    <div class="task-info">
+                      <span class="task-name">#REQ-8021 <span style="font-weight: normal; color: var(--text-muted);">by Amit Kumar</span></span>
+                      <span class="task-loc" style="margin-top: 2px;">Need study materials for 50 kids</span>
+                      <span style="font-size: 11px; color: var(--warning-orange); margin-top: 4px; font-weight: 600;">Medium Priority</span>
+                    </div>
+                  </td>
+                  <td>Education</td>
+                  <td style="font-size: 13px;">South Village School</td>
+                  <td><span class="status-badge status-pending">Pending</span></td>
+                </tr>
+
+                <!-- Row 2 -->
+                <tr class="request-row" onclick="selectRequest(2)" style="background-color: #f9fafb;">
+                  <td>
+                    <div class="task-info">
+                      <span class="task-name">#REQ-8020 <span style="font-weight: normal; color: var(--text-muted);">by Priya Singh</span></span>
+                      <span class="task-loc" style="margin-top: 2px;">Blankets required for winter</span>
+                      <span style="font-size: 11px; color: var(--emergency-red); margin-top: 4px; font-weight: 600;">High Priority</span>
+                    </div>
+                  </td>
+                  <td>Shelter</td>
+                  <td style="font-size: 13px;">North Night Shelter</td>
+                  <td><span class="status-badge status-approved">Approved</span></td>
+                </tr>
+                
+                <!-- Row 3 -->
+                <tr class="request-row" onclick="selectRequest(3)">
+                  <td>
+                    <div class="task-info">
+                      <span class="task-name">#REQ-8019 <span style="font-weight: normal; color: var(--text-muted);">by Rahul M.</span></span>
+                      <span class="task-loc" style="margin-top: 2px;">Clean drinking water request</span>
+                      <span style="font-size: 11px; color: var(--text-muted); margin-top: 4px; font-weight: 600;">Low Priority</span>
+                    </div>
+                  </td>
+                  <td>Food/Water</td>
+                  <td style="font-size: 13px;">East District Slums</td>
+                  <td><span class="status-badge status-rejected">Rejected</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Request Details Preview Panel -->
+        <div class="preview-panel" id="requestDetailPanel" style="position: sticky; top: 90px; z-index: 10;">
+          <div class="preview-header">
+            <h3><i class="far fa-file-alt"></i> Request Details</h3>
+            <span style="font-size: 12px; color: var(--text-muted);" id="reqIdText">Select a request to view details</span>
+          </div>
+
+          <div id="requestContent" style="display: none;">
+            <div class="preview-card" style="margin-bottom: 15px;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <div>
+                  <span class="status-badge status-pending" id="panelStatus">Pending</span>
+                  <span class="status-badge" style="background: #fffbeb; color: var(--warning-orange);" id="panelPriority">Medium Priority</span>
+                </div>
+                <span style="font-size: 12px; color: var(--text-muted);">Submitted: Today, 8:40 AM</span>
+              </div>
+              
+              <h4 class="preview-title" style="margin-top: 15px; font-size: 20px;" id="panelTitle">Need study materials for 50 kids</h4>
+              
+              <p class="preview-desc" id="panelDesc">
+                Local government school is facing extreme shortage of notebooks, pens, and basic stationary for the upcoming academic year. 50 students from below poverty line families are heavily affected.
+              </p>
+
+              <!-- Gallery -->
+              <h5 style="font-size: 13px; color: var(--text-muted); margin-bottom: 5px;">Attachments</h5>
+              <div class="image-gallery">
+                <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=200&h=200&fit=crop" class="gallery-img" alt="School">
+                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=200&h=200&fit=crop" class="gallery-img" alt="Students">
+              </div>
+            </div>
+
+            <!-- Meta Data -->
+            <div class="preview-card" style="margin-bottom: 15px;">
+               <div class="detail-row">
+                 <div class="request-preview-meta">
+                   <div class="meta-item" style="margin-bottom: 8px;"><i class="fas fa-user"></i> <b>Requester:</b> Amit Kumar</div>
+                   <div class="meta-item" style="margin-bottom: 8px;"><i class="fas fa-phone"></i> <b>Contact:</b> +91 98765 43210</div>
+                   <div class="meta-item" style="margin-bottom: 8px;"><i class="fas fa-map-marker-alt"></i> <b>Location:</b> South Village School, Bangalore</div>
+                   <div class="meta-item"><i class="fas fa-users"></i> <b>People Affected:</b> ~50 Children</div>
+                 </div>
+               </div>
+               
+               <!-- Map preview -->
+               <div style="height: 100px; background-color: #f3f4f6; border: 1px dashed var(--border-color); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; color: var(--text-muted);">
+                 Map View Available
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="form-actions" style="margin-top: 0; padding-top: 0; border: none; flex-direction: column;">
+              <button class="btn-action btn-primary" style="width: 100%; justify-content: center;" onclick="convertToTask()">
+                <i class="fas fa-exchange-alt"></i> Convert to Task
+              </button>
+              
+              <div style="display: flex; gap: 10px;">
+                <button class="btn-action btn-secondary" style="flex: 1; justify-content: center; background: var(--primary-light); color: var(--primary-dark); border-color: var(--primary-green);" onclick="alert('Request Approved successfully.')">
+                  <i class="fas fa-check"></i> Approve
+                </button>
+                <button class="btn-action btn-secondary" style="flex: 1; justify-content: center; background: var(--emergency-light); color: var(--emergency-red); border-color: var(--emergency-red);" onclick="alert('Request Rejected.')">
+                  <i class="fas fa-times"></i> Reject
+                </button>
+              </div>
+
+              <button class="btn-action btn-secondary" style="width: 100%; justify-content: center;" onclick="alert('Opening secure messaging channel with the user...')">
+                <i class="fas fa-envelope"></i> Contact User
+              </button>
+            </div>
+          </div>
+          
+          <div id="noSelection" style="text-align: center; padding: 50px 20px; color: var(--text-muted);">
+            <i class="fas fa-hand-pointer" style="font-size: 40px; margin-bottom: 15px; opacity: 0.5;"></i>
+            <p>Select a request from the table to view its full details and take action.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Analytics -->
+      <div class="charts-container" style="margin-top: 40px;">
+        <div class="panel">
+          <div class="panel-header">
+            <h2 class="panel-title">Request Trends (Last 7 Days)</h2>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="trendChart"></canvas>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <h2 class="panel-title">Requests by Category</h2>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="catChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Firebase Integration -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <script src="firebase.js"></script>
+
+  <script>
+    // Auth Guard
+    auth.onAuthStateChanged(async (user) => {
+      if (!user) {
+        window.location.href = "login.html";
+        return;
+      }
+      
+      try {
+        const docRef = db.collection("ngos").doc(user.uid);
+        const docSnap = await docRef.get();
+        let ngoData = null;
+        if (docSnap.exists) {
+          ngoData = docSnap.data();
+        } else {
+          const generalUserDoc = await db.collection("users").doc(user.uid).get();
+          if(generalUserDoc.exists) ngoData = generalUserDoc.data();
+        }
+
+        if (ngoData) {
+          document.getElementById("pocNameDisplay").textContent = ngoData.pocName || user.email;
+          const rawName = ngoData.ngoName || ngoData.fullName || "NGO";
+          document.getElementById("profileImage").src = `https://ui-avatars.com/api/?name=${encodeURIComponent(rawName)}&background=EFF6FF&color=1D4ED8&bold=true`;
+        }
+      } catch (error) {
+        console.error("Error fetching admin data:", error);
+      }
+    });
+
+    async function logout(){
+      await auth.signOut();
+      localStorage.clear();
+      window.location.href = "login.html";
+    }
+
+    // UI Logic
+    function selectRequest(id) {
+      document.getElementById('noSelection').style.display = 'none';
+      document.getElementById('requestContent').style.display = 'block';
+      document.getElementById('reqIdText').textContent = 'Request ID: #REQ-802' + id;
+      
+      // Reset highlighting
+      const rows = document.querySelectorAll('.request-row');
+      rows.forEach(r => r.style.borderLeft = 'none');
+      event.currentTarget.style.borderLeft = '4px solid var(--primary-green)';
+
+      // Here you would dynamically populate the preview pane with real data
+    }
+
+    function convertToTask() {
+      alert("Redirecting to Create Task with pre-filled request data...");
+      window.location.href = 'create-task.html';
+    }
+
+    function convertUrgentToTask(type, location) {
+      // Store the urgent request info so create-task.html can pre-fill itself
+      sessionStorage.setItem('prefillTitle', type);
+      sessionStorage.setItem('prefillLocation', location);
+      sessionStorage.setItem('prefillPriority', 'High');
+      const btn = event.currentTarget;
+      const orig = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Converting...';
+      btn.disabled = true;
+      setTimeout(() => {
+        window.location.href = 'create-task.html';
+      }, 800);
+    }
+
+    // Chart.js
+    document.addEventListener("DOMContentLoaded", function() {
+      // 1. Trends Line Chart
+      const ctxTrend = document.getElementById('trendChart').getContext('2d');
+      new Chart(ctxTrend, {
+        type: 'line',
+        data: {
+          labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          datasets: [{
+            label: 'New Requests',
+            data: [65, 59, 80, 81, 56, 55, 90],
+            fill: true,
+            borderColor: '#4CAF50',
+            backgroundColor: 'rgba(76, 175, 80, 0.1)',
+            tension: 0.4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: { y: { beginAtZero: true } }
+        }
+      });
+
+      // 2. Category Donut
+      const ctxCat = document.getElementById('catChart').getContext('2d');
+      new Chart(ctxCat, {
+        type: 'doughnut',
+        data: {
+          labels: ['Food', 'Medical', 'Education', 'Shelter'],
+          datasets: [{
+            data: [45, 25, 20, 10],
+            backgroundColor: ['#3b82f6', '#dc2626', '#a855f7', '#f59e0b'],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '70%',
+          plugins: { legend: { position: 'bottom', labels: { usePointStyle: true } } }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
